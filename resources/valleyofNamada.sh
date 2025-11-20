@@ -168,7 +168,7 @@ function deploy_validator_node() {
     echo -e "${YELLOW}This may take 1-5 minutes. Please don't interrupt the process.${RESET}"
     sleep 2
 
-    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/namada_validator_node_install_mainnet.sh)
+    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/namada_validator_node_install_mainnet.sh)
     menu
 }
 
@@ -329,12 +329,12 @@ function show_validator_node_status() {
 
 function apply_snapshot() {
     echo -e "${CYAN}Applying snapshot...${RESET}"
-    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/apply_snapshot.sh)
+    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/apply_snapshot.sh)
     menu
 }
 
 function update_namada() {
-    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/namada_update.sh)
+    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/namada_update.sh)
     menu
 }
 
@@ -355,7 +355,7 @@ function install_namada_app() {
 }
 
 function cubic_slashing() {
-    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/csr.sh)
+    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/csr.sh)
     menu
 }
 
@@ -1676,13 +1676,13 @@ function vote_proposal() {
 
 function deploy_namada_indexer() {
     echo -e "${CYAN}Deploying Namada Indexer...${RESET}"
-    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/namada_indexer_install.sh)
+    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/namada_indexer_install.sh)
     menu
 }
 
 function apply_snapshot_namada_indexer() {
     echo -e "${CYAN}Applying snapshot...${RESET}"
-    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/apply_snapshot_namada_indexer.sh)
+    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/apply_snapshot_namada_indexer.sh)
     menu
 }
 
@@ -1732,13 +1732,13 @@ function delete_namada_indexer() {
 
 function deploy_namada_masp_indexer() {
     echo -e "${CYAN}Deploying Namada MASP Indexer...${RESET}"
-    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/namada_masp_indexer_install.sh)
+    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/namada_masp_indexer_install.sh)
     menu
 }
 
 function apply_snapshot_namada_masp_indexer() {
     echo -e "${CYAN}Applying snapshot...${RESET}"
-    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/apply_snapshot_namada_masp_indexer.sh)
+    bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/apply_snapshot_namada_masp_indexer.sh)
     menu
 }
 
