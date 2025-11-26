@@ -217,8 +217,10 @@ suggest_update() {
 
     echo -e "${YELLOW}Current Namada binary version: $current_version${NC}"
 
-    if [[ $snapshot_height -ge 2176000 ]]; then
-        required_version="Namada v101.1.1"
+    if [[ $snapshot_height -ge 4514500 ]]; then
+        required_version="Namada v101.1.7"
+    elif [[ $snapshot_height -ge 2176000 ]]; then
+        required_version="Namada v101.1.4"
     elif [[ $snapshot_height -ge 1604223 ]]; then
         required_version="Namada v1.1.5"
     elif [[ $snapshot_height -ge 894000 ]]; then

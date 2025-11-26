@@ -19,8 +19,8 @@ declare -A versions=(
     ["v1.0.0"]="0-893999 https://github.com/anoma/namada/releases/download/v1.0.0"
     ["v1.1.1"]="894000-1604222 https://github.com/anoma/namada/releases/download/v1.1.1"
     ["v1.1.5"]="1604223-2175999 https://github.com/anoma/namada/releases/download/v1.1.5"
-    ["v101.1.4"]="2176000-X https://github.com/anoma/namada/releases/download/v101.1.4"
-    ["v201.0.7"]="X-next https://github.com/anoma/namada/releases/download/v201.0.7"
+    ["v101.1.4"]="2176000-451499 https://github.com/anoma/namada/releases/download/v101.1.4"
+    ["v201.0.7"]="4514500-next https://github.com/anoma/namada/releases/download/v201.0.7"
 )
 
 # Function to show version options
