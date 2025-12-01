@@ -64,14 +64,33 @@ method1() {
     echo "Binary installed successfully"
 }
 
+# Install build dependencies without upgrading existing packages to avoid touching other services
+install_build_deps() {
+    local deps=(libssl-dev pkg-config protobuf-compiler clang cmake llvm llvm-dev libudev-dev git)
+    local missing=()
+
+    for pkg in "${deps[@]}"; do
+        if ! dpkg -s "$pkg" >/dev/null 2>&1; then
+            missing+=("$pkg")
+        fi
+    done
+
+    if [ ${#missing[@]} -eq 0 ]; then
+        echo "All build dependencies are already installed. Skipping package installation."
+        return
+    fi
+
+    echo "Installing missing build dependencies: ${missing[*]}"
+    sudo apt-get update -y
+    NEEDRESTART_MODE=l sudo -E apt-get install -y --no-upgrade --no-install-recommends "${missing[@]}"
+}
+
 # Method 2: Build from source
 method2() {
     echo -e "\n\033[1mMethod 2: Building from source\033[0m"
     version=$1
 
-    sudo apt update -y
-    sudo apt install -y libssl-dev pkg-config protobuf-compiler \
-        clang cmake llvm llvm-dev libudev-dev git
+    install_build_deps
 
     if [ ! -d "$HOME/namada" ]; then
         git clone https://github.com/anoma/namada.git $HOME/namada
