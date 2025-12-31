@@ -113,7 +113,7 @@ while true; do
     show_version_options
     read -p "Enter your choice: " version_choice
 
-    if (( version_choice == 5 )); then
+    if (( version_choice == 6 )); then
         echo "Exiting..."
         exit 0
     fi
