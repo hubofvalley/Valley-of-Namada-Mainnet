@@ -67,13 +67,23 @@ rustc --version
 
 cd $HOME
 rm -rf cometbft
-git clone https://github.com/cometbft/cometbft.git
+mkdir -p cometbft
 cd cometbft
-git fetch --all
-git checkout v0.37.16
-make build
-sudo cp $HOME/cometbft/build/cometbft /usr/local/bin/
+wget -O cometbft_v0.37.17.tar.gz https://github.com/heliaxdev/cometbft/releases/download/v0.37.17/cometbft_0.37.17_linux_amd64.tar.gz
+tar -xzf cometbft_v0.37.17.tar.gz
+sudo chmod +x cometbft
+sudo cp cometbft /usr/local/bin/
 cometbft version
+
+#cd $HOME
+#rm -rf cometbft
+#git clone https://github.com/cometbft/cometbft.git
+#cd cometbft
+#git fetch --all
+#git checkout v0.37.17
+#make build
+#sudo cp $HOME/cometbft/build/cometbft /usr/local/bin/
+#cometbft version
 
 # 5. Set environment variables
 echo 'export MONIKER="$MONIKER"' >> $HOME/.bash_profile
