@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "network": "namada-mainnet",
+  "human_name": "Valley of Namada - Mainnet",
+  "last_updated": "2026-06-27",
+  "source_of_truth": "github.com/hubofvalley/Valley-of-Namada-Mainnet (resources/*.sh)",
+  "verification_status": "needs_live_verification",
+  "verification_note": "Initial gv-ops contract seeded from the Valley Namada mainnet scripts and README. Live service state, binary versions, and sync data still need server-side validation.",
+  "chain": {
+    "chain_spec": "mainnet",
+    "chain_id": "namada.5f5de2dd1b88cba30586420",
+    "consensus_default_rpc_port": 26657,
+    "p2p_default_port": 26656,
+    "abci_default_port": 26658,
+    "prometheus_default_port": 26660,
+    "go_version": "1.22.5",
+    "cometbft_version": "v0.37.17"
+  },
+  "components": {
+    "validator": {
+      "name": "namada-mainnet-validator",
+      "role": "validator",
+      "version_model": "direct_component_versions",
+      "version_note": "Namada uses direct component target versions. gv-ops compares the live namadan binary against the current Namada target version.",
+      "consensus": {
+        "binary": "namadan",
+        "version_current": "v201.0.7",
+        "version_options": [
+          "v1.0.0",
+          "v1.1.1",
+          "v1.1.5",
+          "v101.1.7",
+          "v201.0.7"
+        ],
+        "release_repo": "https://github.com/anoma/namada",
+        "release_artifact_pattern": "namada-<version>-Linux-x86_64.tar.gz",
+        "install_source": "resources/namada_validator_node_install_mainnet.sh",
+        "update_source": "resources/namada_update.sh",
+        "needs_live_verification": true
+      },
+      "cometbft": {
+        "binary": "cometbft",
+        "version_current": "v0.37.17",
+        "install_source": "resources/namada_validator_node_install_mainnet.sh",
+        "needs_live_verification": true
+      },
+      "services": {
+        "consensus": "namadad"
+      },
+      "home_dir": "$HOME/.local/share/namada",
+      "chain_home_dir": "$HOME/.local/share/namada/namada.5f5de2dd1b88cba30586420",
+      "binary_install_dir": "/usr/local/bin",
+      "install_script": "resources/namada_validator_node_install_mainnet.sh",
+      "update_script": "resources/namada_update.sh",
+      "env_overrides": {
+        "NAMADA_CHAIN_ID": "namada.5f5de2dd1b88cba30586420",
+        "NAMADA_PORT": "26",
+        "BASE_DIR": "$HOME/.local/share/namada"
+      }
+    },
+    "indexer": {
+      "name": "namada-indexer",
+      "role": "indexer",
+      "version_current": "v4.1.0",
+      "release_repo": "https://github.com/anoma/namada-indexer",
+      "service_model": "docker-compose",
+      "install_script": "resources/namada_indexer_install.sh",
+      "needs_live_verification": true
+    },
+    "masp_indexer": {
+      "name": "namada-masp-indexer",
+      "role": "masp-indexer",
+      "version_current": "v1.4.7",
+      "release_repo": "https://github.com/anoma/namada-masp-indexer",
+      "service_model": "docker-compose",
+      "install_script": "resources/namada_masp_indexer_install.sh",
+      "needs_live_verification": true
+    }
+  },
+  "endpoints": {
+    "public_provider": "Grand Valley",
+    "cosmos_rpc": "https://lightnode-rpc-mainnet-namada.grandvalleys.com",
+    "cosmos_websocket": "wss://lightnode-rpc-mainnet-namada.grandvalleys.com/websocket",
+    "seed": "tcp://65882ea69f4146d8cc83564257252f4711d3e05e@seed-mainnet-namada.grandvalleys.com:56656",
+    "peer": "tcp://3879583b9c6b1ac29d38fefb5a14815dd79282d6@peer-mainnet-namada.grandvalleys.com:38656",
+    "indexer": "https://indexer-mainnet-namada.grandvalleys.com",
+    "masp_indexer": "https://masp-indexer-mainnet-namada.grandvalleys.com",
+    "namadillo": "https://valley-of-namadillo.grandvalleys.com"
+  },
+  "scripts": {
+    "install_validator": "resources/namada_validator_node_install_mainnet.sh",
+    "update_validator": "resources/namada_update.sh",
+    "apply_snapshot": "resources/apply_snapshot.sh",
+    "install_indexer": "resources/namada_indexer_install.sh",
+    "install_masp_indexer": "resources/namada_masp_indexer_install.sh",
+    "menu": "resources/valleyofNamada.sh"
+  },
+  "docs": {
+    "validator": "docs/validator-node.md",
+    "staking": "docs/staking.md",
+    "wallets": "docs/wallets.md",
+    "snapshots": "docs/snapshots.md",
+    "indexer": "docs/indexer.md"
+  }
+}
