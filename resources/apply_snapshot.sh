@@ -401,7 +401,7 @@ main_script() {
 
     # Execute the update script if the user chose to update
     if [[ $update_choice == "y" || $update_choice == "Y" ]]; then
-        bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main/Namada/resources/namada_update.sh)
+        bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Valley-of-Namada-Mainnet/main/resources/namada_update.sh)
     fi
 
     # Start your namada node

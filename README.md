@@ -93,7 +93,11 @@ bash <(curl -s https://raw.githubusercontent.com/hubofvalley/Mainnet-Guides/main
 
 ## 📖 Documentation
 
-For detailed documentation, see the [docs/](docs/) folder.
+For detailed documentation, see the [docs/](docs/) folder:
+
+- [Usage guide](docs/usage.md) - menu navigation, option reference, safety notes.
+- [Validator node guide](docs/validator-node.md) - validator node setup and operations.
+- [Wallet guide](docs/wallets.md) - transparent and shielded wallet workflows.
 
 ## 🔗 Links
 
