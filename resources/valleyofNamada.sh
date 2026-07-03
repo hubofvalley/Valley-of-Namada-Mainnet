@@ -1900,7 +1900,18 @@ function show_guidelines() {
 
 # Menu function
 function menu() {
-    realtime_block_height=$(curl -s https://lightnode-rpc-mainnet-namada.grandvalleys.com/status | jq -r '.result.sync_info.latest_block_height')
+    realtime_block_height=$(curl -s https://lightnode-rpc-mainnet-namada.grandvalleys.com/status | jq -r '.result.sync_info.latest_block_height // empty' 2>/dev/null)
+    [ -z "$realtime_block_height" ] && realtime_block_height="N/A"
+    local_rpc_port=$(grep -oP 'laddr = "tcp://(0.0.0.0|127.0.0.1):\K[0-9]+57' "$HOME/.local/share/namada/namada.5f5de2dd1b88cba30586420/config.toml" 2>/dev/null)
+    local_node_height=""
+    if [ -n "$local_rpc_port" ]; then
+        local_node_height=$(curl -s "http://127.0.0.1:$local_rpc_port/status" 2>/dev/null | jq -r '.result.sync_info.latest_block_height // empty' 2>/dev/null)
+    fi
+    [ -z "$local_node_height" ] && local_node_height="N/A (node not running)"
+    block_difference="N/A"
+    if [[ "$realtime_block_height" =~ ^[0-9]+$ && "$local_node_height" =~ ^[0-9]+$ ]]; then
+        block_difference=$(( realtime_block_height - local_node_height ))
+    fi
     echo -e "${ORANGE}Valley of Namada Mainnet${RESET}"
     echo "Main Menu:"
     echo -e "${GREEN}1. Node Interactions:${RESET}"
@@ -1956,7 +1967,9 @@ function menu() {
     echo -e "${YELLOW}9. Show Guidelines${RESET}"
     echo -e "${RED}10. Exit${RESET}"
 
-    echo -e "Latest Block Height: ${GREEN}$realtime_block_height${RESET}"
+    echo -e "Network Latest Block Height: ${GREEN}$realtime_block_height${RESET}"
+    echo -e "Local Node Block Height: ${GREEN}$local_node_height${RESET}"
+    echo -e "Block Difference: ${YELLOW}$block_difference${RESET}"
     echo -e "\n${YELLOW}Please run the following command to apply the changes after exiting the script:${RESET}"
     echo -e "${GREEN}source ~/.bash_profile${RESET}"
     echo -e "${YELLOW}This ensures the environment variables are set in your current bash session.${RESET}"
